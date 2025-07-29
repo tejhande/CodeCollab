@@ -3,7 +3,7 @@ import { Button, Container, Typography } from '@mui/material';
 
 const Login = () => {
   const googleLogin = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
   };
 
   return (
@@ -14,6 +14,7 @@ const Login = () => {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
+        width:'100vw'
       }}
     >
       <Typography variant="h2" gutterBottom>

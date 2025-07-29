@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/user', {credentials: "include"});
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/user`, {credentials: "include"});
         const data = await res.json();
         setUser(data);
       } catch (err) {
@@ -39,6 +39,10 @@ function App() {
         <Route
           path="/documents/:id"
           element={user ? <EditorPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/auth/google/callback"
+          element={<Navigate to="/" />}
         />
       </Routes>
     </Router>

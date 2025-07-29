@@ -9,7 +9,7 @@ const Editor = ({ documentId }) => {
   const [code, setCode] = useState('');
 
   useEffect(() => {
-    const s = io('http://localhost:5000');
+    const s = io(import.meta.env.VITE_API_BASE_URL);
     setSocket(s);
 
     return () => {
@@ -61,7 +61,7 @@ const Editor = ({ documentId }) => {
     <CodeMirror
       value={code}
       height="100%"
-      width="100%"
+      width="100vw"
       extensions={[javascript({ jsx: true })]}
       theme={okaidia}
       onChange={onChange}

@@ -18,6 +18,7 @@ const Home = ({ user }) => {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 'calc(100vh - 64px)',
+        width:'100vw',
         padding: '20px',
       }}
     >

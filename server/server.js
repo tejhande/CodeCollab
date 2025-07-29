@@ -15,7 +15,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST'],
   },
 });
@@ -24,7 +24,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -47,21 +47,29 @@ app.get(
 
 app.get(
   '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:5173' }),
+  passport.authenticate('google', { failureRedirect: process.env.FRONTEND_URL }),
   (req, res) => {
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 
 app.get('/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.FRONTEND_URL);
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("API is working!");
+});
+
 app.get('/api/user', (req, res) => {
-  res.send(req.user);
+  if (req.user) {
+    res.json(req.user);
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
 });
 
 io.on('connection', (socket) => {
