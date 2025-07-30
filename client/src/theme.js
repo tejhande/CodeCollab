@@ -1,6 +1,25 @@
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+export const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#61dafb',
+    },
+    secondary: {
+      main: '#f0db4f',
+    },
+    background: {
+      default: '#f5f5f5',
+      paper: '#ffffff',
+    },
+  },
+  typography: {
+    fontFamily: '"Hack", "monospace"',
+  },
+});
+
+export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
@@ -15,17 +34,6 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h2: {
-      fontFamily: '"Fira Code", "monospace"',
-    },
-    h4: {
-      fontFamily: '"Fira Code", "monospace"',
-    },
-    h6: {
-      fontFamily: '"Fira Code", "monospace"',
-    },
+    fontFamily: '"Hack", "monospace"',
   },
 });
-
-export default theme;

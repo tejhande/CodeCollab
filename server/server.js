@@ -53,10 +53,11 @@ app.get(
   }
 );
 
-app.get('/logout', (req, res, next) => {
+app.post('/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect(process.env.FRONTEND_URL);
+    res.clearCookie('connect.sid');
+    res.status(200).json({ message: 'Logout successful' });
   });
 });
 
